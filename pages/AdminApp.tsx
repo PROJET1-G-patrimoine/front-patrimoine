@@ -2,14 +2,22 @@
 "use client";
 
 import React from 'react';
-import { Admin, ListGuesser, Resource } from 'react-admin';
-import dataProvider from './dataProvider';
+import dataProviderPatrimoine from './dataProvider/dataProviderPatrimoine';
+import PatrimoineList from './components/list/PatrimoineList';
+import { Admin, Resource } from 'react-admin';
+import PatrimoineShow from './components/show/PatrimoineShow';
+import PatrimoineEdit from './components/edit/PatrimoineEdit';
 
-const App: React.FC = () => (
-    <Admin dataProvider={dataProvider}>
-        <Resource name="patrimoines" list={ListGuesser} />
-        <Resource name="patrimoines/possessions" list={ListGuesser} />
+
+const AdminApp: React.FC = () => (
+    <Admin dataProvider={dataProviderPatrimoine}>
+        <Resource 
+        name="patrimoines" 
+        list={PatrimoineList} 
+        show={PatrimoineShow}
+        edit={PatrimoineEdit}
+        />
     </Admin>
 );
 
-export default App;
+export default AdminApp;
