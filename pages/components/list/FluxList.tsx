@@ -1,7 +1,6 @@
 import React from 'react';
 import { List, Datagrid, TextField, NumberField, DateField } from 'react-admin';
 
-// Définition des types pour les données JSON
 interface Devise {
     nom: string;
     code: string;

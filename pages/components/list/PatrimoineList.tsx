@@ -1,5 +1,4 @@
 import { List, Datagrid, TextField ,NumberField, DateField} from 'react-admin';
-
 const PatrimoineList = (props: any) => (
     <List {...props}>
         <Datagrid rowClick="edit">
