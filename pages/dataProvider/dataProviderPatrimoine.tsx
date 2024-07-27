@@ -1,7 +1,6 @@
 import { DataProvider, fetchUtils } from 'ra-core';
 import jsonServerProvider from 'ra-data-json-server';
 import { stringify } from 'query-string';
-
 const apiUrl = 'https://virtserver.swaggerhub.com/HEIMAMINIAINA444/harena/1.0.0';
 
 const httpClient = (url: string, options: fetchUtils.Options = {}) => {
@@ -37,7 +36,7 @@ const dataProviderPatrimoine: DataProvider = {
 
         try {
             const { json } = await httpClient(url);
-
+             
             // Vérifiez si la réponse est un objet avec une clé `data`
             const data = Array.isArray(json) ? json : json.data;
 
@@ -57,7 +56,6 @@ const dataProviderPatrimoine: DataProvider = {
             throw new Error('Erreur lors de la récupération de la liste des ressources');
         }
     },
-
     getOne: async (resource, params) => {
         const url = `${apiUrl}/${resource}/${params.id}`;
 

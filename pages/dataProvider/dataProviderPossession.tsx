@@ -2,8 +2,7 @@ import { DataProvider, fetchUtils } from 'ra-core';
 import jsonServerProvider from 'ra-data-json-server';
 import { stringify } from 'query-string';
 
-const apiUrl = `https://virtserver.swaggerhub.com/HEIMAMINIAINA444/harena/1.0.0/patrimoines/${localStorage.getItem('patrimoine')}`;
-
+const apiUrl = 'https://virtserver.swaggerhub.com/HEIMAMINIAINA444/harena/1.0.0/patrimoines';
 const httpClient = (url: string, options: fetchUtils.Options = {}) => {
     options.user = {
         ...options.user,
@@ -33,7 +32,7 @@ const dataProviderPatrimoine: DataProvider = {
             range: JSON.stringify([(page - 1) * perPage, page * perPage - 1]),
             filter: JSON.stringify(params.filter),
         };
-        const url = `${apiUrl}/${resource}?${stringify(query)}`;
+        const url = `${apiUrl}/${localStorage.getItem('patrimoine')}/${resource}?${stringify(query)}`;
 
         try {
             const { json } = await httpClient(url);
@@ -59,7 +58,7 @@ const dataProviderPatrimoine: DataProvider = {
     },
 
     getOne: async (resource, params) => {
-        const url = `${apiUrl}/${resource}/${params.id}`;
+        const url = `${apiUrl}/${localStorage.getItem('patrimoine')}/${resource}/${params.id}`;
 
         try {
             const { json } = await httpClient(url);
@@ -82,7 +81,7 @@ const dataProviderPatrimoine: DataProvider = {
         }
     },
     update: async (resource, params) => {
-        const url = `${apiUrl}/${resource}/${params.id}`;
+        const url = `${apiUrl}/${localStorage.getItem('patrimoine')}/${resource}/${params.id}`;
     
         try {
             const updatedData = {
@@ -105,6 +104,20 @@ const dataProviderPatrimoine: DataProvider = {
         } catch (error) {
             console.error('update error:', error);
             throw new Error('Erreur lors de la mise à jour de la ressource');
+        }
+    },
+    delete: async (resource, params) => {
+        const { id } = params;
+        const url = `${apiUrl}/${resource}/${id}`;
+
+        try {
+            await httpClient(url, {
+                method: 'DELETE',
+            });
+            return { data: { id } };
+        } catch (error) {
+            console.error(error);
+            throw error;
         }
     },
     
