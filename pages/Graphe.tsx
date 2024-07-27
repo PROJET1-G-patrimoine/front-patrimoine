@@ -26,19 +26,17 @@ const GraphComponent = () => {
     };
 
     fetchData();
-  }, []); // Le tableau vide signifie que cet effet ne dépend d'aucune propriété ou état
-
+  }, []);
   if (isLoading) {
-    return <div>Loading...</div>; // Affichage du message de chargement pendant le traitement
+    return <div>Loading...</div>; 
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>; // Affichage de l'erreur si elle se produit
+    return <div>Error: {error.message}</div>;
   }
 
   return (
     <div>
-      {/* Affichage des données sous forme de JSON formaté */}
       <pre>{JSON.stringify(data, null, 2)}</pre>
     </div>
   );
