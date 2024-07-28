@@ -11,7 +11,7 @@ const Flux: React.FC = () => {
   }, []);
 
   if (!isClient) {
-    return null;
+    return null; 
   }
 
   return (

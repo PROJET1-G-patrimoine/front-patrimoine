@@ -6,7 +6,7 @@ const GraphComponent = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async () => { 
       try {
         const response = await fetch(
           `https://virtserver.swaggerhub.com/HEIMAMINIAINA444/harena/1.0.0/patrimoines/${localStorage.getItem('patrimoine')}/graphe`
@@ -27,17 +27,18 @@ const GraphComponent = () => {
 
     fetchData();
   }, []);
+
   if (isLoading) {
-    return <div>Loading...</div>; 
+    return <div className="text-center my-10">Loading...</div>; 
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div className="text-red-500 text-center my-10">Error: {error.message}</div>;
   }
 
   return (
-    <div>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+    <div className="max-w-xl mx-auto my-10 p-5 bg-white rounded-lg shadow-md">
+      <pre className="whitespace-pre-wrap">{JSON.stringify(data, null, 2)}</pre>
     </div>
   );
 };

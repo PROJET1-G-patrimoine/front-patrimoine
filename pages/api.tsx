@@ -61,7 +61,7 @@ export const argents: Argent[] = [
 ];
 
 export const fluxArgents: FluxArgent[] = [
-    // Ajouter des objets FluxArgent si nécessaire
+    
 ];
 
 export const fluxImpossibles: FluxImpossibles[] = [

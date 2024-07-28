@@ -7,7 +7,7 @@ const httpClient = (url: string, options: fetchUtils.Options = {}) => {
     options.user = {
         ...options.user,
         authenticated: true,
-        token: 'Bearer my_token',  // Ajoutez le token d'authentification si nécessaire
+        token: 'token',
     };
     return fetchUtils.fetchJson(url, options);
 };
@@ -22,7 +22,7 @@ const addIdsToData = (data: any[]) => {
     }));
 };
 
-const dataProviderPatrimoine: DataProvider = {
+export const dataProviderPatrimoine =  {
     ...jsonServerProvider(apiUrl, httpClient),
     getList: async (resource, params) => {
         const { page, perPage } = params.pagination;
@@ -37,7 +37,6 @@ const dataProviderPatrimoine: DataProvider = {
         try {
             const { json } = await httpClient(url);
              
-            // Vérifiez si la réponse est un objet avec une clé `data`
             const data = Array.isArray(json) ? json : json.data;
 
             if (!Array.isArray(data)) {
@@ -85,11 +84,11 @@ const dataProviderPatrimoine: DataProvider = {
         try {
             const updatedData = {
                 ...params.data,
-                id: params.id, // Assurez-vous que l'id est inclus dans les données envoyées
+                id: params.id, 
             };
     
             const { json } = await httpClient(url, {
-                method: 'PATCH', // Utilisez 'PATCH' au lieu de 'PUT'
+                method: 'PATCH', 
                 body: JSON.stringify(updatedData),
             });
     

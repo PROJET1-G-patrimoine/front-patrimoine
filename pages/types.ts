@@ -26,7 +26,7 @@ export interface Patrimoine extends RaRecord {
 }
 
 export interface FluxArgent extends RaRecord {
-    // Ajouter des propriétés si nécessaire
+    
 }
 
 export interface Possession extends RaRecord {

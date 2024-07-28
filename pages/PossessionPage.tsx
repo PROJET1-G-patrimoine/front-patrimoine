@@ -9,7 +9,7 @@ const PossessionPage: React.FC = () => {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    setIsClient(true);
+    setIsClient(true); 
   }, []);
 
   if (!isClient) {
