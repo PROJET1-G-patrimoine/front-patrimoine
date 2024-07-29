@@ -13,7 +13,7 @@ const httpClient = (url: string, options: fetchUtils.Options = {}) => {
 };
 
 let lastId = 0;
-const generateUniqueId = () => ++lastId;
+const generateUniqueId = () => lastId;
 
 const addIdsToData = (data: any[]) => {
     return data.map(item => ({
@@ -80,22 +80,31 @@ export const dataProviderPatrimoine =  {
     },
     update: async (resource, params) => {
         const url = `${apiUrl}/${resource}/${params.id}`;
-    
+
         try {
             const updatedData = {
                 ...params.data,
                 id: params.id, 
             };
-    
-            const { json } = await httpClient(url, {
-                method: 'PATCH', 
+
+            console.log('Updating data at URL:', url);
+            console.log('Updated data:', updatedData);
+
+            const response = await httpClient(url, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
                 body: JSON.stringify(updatedData),
             });
-    
+
+            const json = await response.json();
+            console.log('Updated data received:', json);
+
             if (typeof json !== 'object' || json === null) {
                 throw new Error("La réponse n'est pas un objet");
             }
-    
+
             return {
                 data: json,
             };
@@ -104,7 +113,6 @@ export const dataProviderPatrimoine =  {
             throw new Error('Erreur lors de la mise à jour de la ressource');
         }
     },
-    
 };
 
 export default dataProviderPatrimoine;
