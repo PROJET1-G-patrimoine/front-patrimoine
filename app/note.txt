@@ -1,0 +1,9 @@
+// patrimoines/{nom_patrimoines}/possessions 
+// update d'une possession
+// list des possessions => PossessionsList 
+//                         PossessionsEdit
+//                         PossessionsShow 
+// /patrimoines/{nom_patrimoines}/possessions/{nom_possessions}
+// list des possessions
+
+// methode delete une possession de patrimoine 
